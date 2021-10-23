@@ -29,26 +29,40 @@ public class UserController {
     private IUserService userService;
 
     /**
+     * 使用自定义异常处理
+     */
+    /**
      * 登录
      * @param username
      * @param password
      * @param session
      * @return
      */
+//    @RequestMapping("login")
+//    @ResponseBody
+//    public RespBean login(String username, String password, HttpSession session) {
+//        try {
+//            User user = userService.login(username, password);
+//            session.setAttribute("user", user);
+//            return RespBean.success("用户登录成功！");
+//        } catch (ParamsException e) {
+//            e.printStackTrace();
+//            return RespBean.error(e.getMsg());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return RespBean.error("用户登录失败！");
+//        }
+//    }
+
+    /**
+     * 使用全局异常处理
+     */
     @RequestMapping("login")
     @ResponseBody
     public RespBean login(String username, String password, HttpSession session) {
-        try {
-            User user = userService.login(username, password);
-            session.setAttribute("user", user);
-            return RespBean.success("用户登录成功！");
-        } catch (ParamsException e) {
-            e.printStackTrace();
-            return RespBean.error(e.getMsg());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return RespBean.error("用户登录失败！");
-        }
+        User user = userService.login(username, password);
+        session.setAttribute("user", user);
+        return RespBean.success("用户登录成功！");
     }
 
     /**
