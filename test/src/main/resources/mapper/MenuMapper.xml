@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.admin.mapper.MenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.admin.pojo.Menu">
+        <id column="id" property="id" />
+        <result column="icon" property="icon" />
+        <result column="name" property="name" />
+        <result column="state" property="state" />
+        <result column="url" property="url" />
+        <result column="p_id" property="pId" />
+        <result column="acl_value" property="aclValue" />
+        <result column="grade" property="grade" />
+        <result column="is_del" property="isDel" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, icon, name, state, url, p_id, acl_value, grade, is_del
+    </sql>
+    
+    <select id="queryAllMenus" resultType="com.example.admin.dto.TreeDto">
+        select id, p_id as pId, name
+        from menu
+        where is_del = 0
+    </select>
+
+</mapper>
